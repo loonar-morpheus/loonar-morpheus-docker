@@ -1,0 +1,37 @@
+services:
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${METABASE_PORT}:3000"
+    depends_on:
+      - postgres
+    networks:
+      - metabase_network
+    volumes:
+      - metabase_data:/metabase-data
+
+  postgres:
+    image: postgres:15
+    container_name: metabase_postgres
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - metabase_network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+
+networks:
+  metabase_network:
+    driver: bridge
+
+volumes:
+  metabase_data:
+  postgres_data:

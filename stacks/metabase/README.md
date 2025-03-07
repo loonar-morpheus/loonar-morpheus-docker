@@ -1,4 +1,4 @@
-# Portainer stack
+# Metabase stack
 WIP
 
 ## How to deploy
@@ -19,4 +19,4 @@ WIP
 
 ## References
 
-- [Portainer Official website](https://www.portainer.io/)
+- [Metabase official website](https://www.metabase.com/)
