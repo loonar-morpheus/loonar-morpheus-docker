@@ -1,9 +1,9 @@
 services:
   metabase:
+    env_file: .env
     image: metabase/metabase:latest
     container_name: metabase
     restart: unless-stopped
-    env_file: .env
     ports:
       - "${METABASE_PORT}:3000"
     depends_on:
@@ -14,10 +14,10 @@ services:
       - metabase_data:/metabase-data
 
   postgres:
+    env_file: .env
     image: postgres:15
     container_name: metabase_postgres
     restart: unless-stopped
-    env_file: .env
     networks:
       - metabase_network
     volumes:

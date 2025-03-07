@@ -1,5 +1,6 @@
 services:
   web:
+    env_file: .env
     image: portainer/portainer-ce:latest
     container_name: portainer
     restart: always
@@ -18,6 +19,7 @@ services:
       - portainer_network
 
   db:
+    env_file: .env
     image: postgres:latest
     container_name: portainer_db
     restart: always
